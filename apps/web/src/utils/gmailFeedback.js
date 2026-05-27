@@ -1,7 +1,7 @@
 import { toast } from 'sonner';
 
 const DEFAULT_TITLE = 'Thank you for your message!';
-const DEFAULT_DESCRIPTION = 'Gmail is ready. Please tap Send there, and we will reply as soon as possible.';
+const DEFAULT_DESCRIPTION = 'Your email app is ready. Please tap Send there, and we will reply as soon as possible.';
 
 const showBrowserNotification = async (title, description) => {
   if (typeof window === 'undefined' || !('Notification' in window)) {
@@ -41,7 +41,12 @@ export const showGmailThankYou = ({
   showBrowserNotification(title, description).catch(() => {});
 };
 
-export const openGmailWithThankYou = (gmailLink, feedbackOptions) => {
-  window.open(gmailLink, '_blank', 'noopener,noreferrer');
+export const openGmailWithThankYou = (emailLink, feedbackOptions) => {
+  if (emailLink.startsWith('mailto:')) {
+    window.location.href = emailLink;
+  } else {
+    window.open(emailLink, '_blank', 'noopener,noreferrer');
+  }
+
   showGmailThankYou(feedbackOptions);
 };

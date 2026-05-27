@@ -14,7 +14,7 @@ function ProductCard({ product }) {
   const handleGmailOrder = () => {
     openGmailWithThankYou(getProductOrderGmailLink(product.name), {
       title: 'Thank you for your order request!',
-      description: 'Gmail is ready with your product details , we will contact you soon.'
+      description: 'Your email app is ready with your product details, and we will contact you soon.'
     });
   };
 
@@ -55,7 +55,7 @@ function ProductCard({ product }) {
             className="w-full transition-all duration-200 active:scale-[0.98]"
           >
             <Mail className="w-4 h-4 mr-2" />
-            Order via Gmail
+            Order via Email
           </Button>
         </CardFooter>
       </Card>

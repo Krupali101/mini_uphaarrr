@@ -38,7 +38,7 @@ function ContactPage() {
     setIsSubmitting(true);
     openGmailWithThankYou(getContactMessageGmailLink(formData), {
       title: 'Thank you for contacting us!',
-      description: 'Gmail is ready with your message , we will get back to you soon.'
+      description: 'Your email app is ready with your message, and we will get back to you soon.'
     });
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
     setIsSubmitting(false);
@@ -184,11 +184,11 @@ function ContactPage() {
                           className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 active:scale-[0.98]"
                         >
                           {isSubmitting ? (
-                            <>Opening Gmail...</>
+                            <>Opening email app...</>
                           ) : (
                             <>
                               <Send className="w-4 h-4 mr-2" />
-                              Open Gmail to Send Message
+                              Open Email App to Send Message
                             </>
                           )}
                         </Button>
@@ -219,13 +219,13 @@ function ContactPage() {
                                 <h3 className="font-semibold mb-1">{method.title}</h3>
                                 <a
                                   href={method.link}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
+                                  target={method.title === 'Email' ? undefined : '_blank'}
+                                  rel={method.title === 'Email' ? undefined : 'noopener noreferrer'}
                                   onClick={() => {
                                     if (method.title === 'Email') {
                                       showGmailThankYou({
                                         title: 'Thank you for reaching out!',
-                                        description: 'Gmail is ready. Please tap Send there, and we will reply soon.'
+                                        description: 'Your email app is ready. Please tap Send there, and we will reply soon.'
                                       });
                                     }
                                   }}

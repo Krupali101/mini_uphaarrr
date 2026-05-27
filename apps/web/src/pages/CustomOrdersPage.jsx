@@ -40,7 +40,7 @@ function CustomOrdersPage() {
     setIsSubmitting(true);
     openGmailWithThankYou(getCustomOrderGmailLink(formData), {
       title: 'Thank you for your custom order request!',
-      description: 'Gmail is ready with your custom gift details , we will reply soon.'
+      description: 'Your email app is ready with your custom gift details, and we will reply soon.'
     });
     setFormData({
       name: '',
@@ -208,11 +208,11 @@ function CustomOrdersPage() {
                           className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 active:scale-[0.98]"
                         >
                           {isSubmitting ? (
-                            <>Opening Gmail...</>
+                            <>Opening email app...</>
                           ) : (
                             <>
                               <Send className="w-4 h-4 mr-2" />
-                              Open Gmail to Send Request
+                              Open Email App to Send Request
                             </>
                           )}
                         </Button>
