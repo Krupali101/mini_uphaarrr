@@ -151,6 +151,14 @@ const getGmailComposeParams = (emailLink) => {
   }
 };
 
+const getMailtoLink = ({ to, subject, body }) => {
+  return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+};
+
+const openCurrentWindow = (link) => {
+  window.location.assign(link);
+};
+
 const openGmailAppOrFallback = (emailLink) => {
   if (typeof window === 'undefined') {
     return;
@@ -167,17 +175,25 @@ const openGmailAppOrFallback = (emailLink) => {
   }
 
   const query = `to=${encodeURIComponent(composeParams.to)}&subject=${encodeURIComponent(composeParams.subject)}&body=${encodeURIComponent(composeParams.body)}`;
+  const mailtoLink = getMailtoLink(composeParams);
 
   if (isAndroid) {
-    window.location.href = `intent://co?${query}#Intent;scheme=googlegmail;package=com.google.android.gm;S.browser_fallback_url=${encodeURIComponent(emailLink)};end`;
+    openCurrentWindow(`intent://compose?${query}#Intent;scheme=mailto;package=com.google.android.gm;S.browser_fallback_url=${encodeURIComponent(mailtoLink)};end`);
+
+    window.setTimeout(() => {
+      if (!document.hidden) {
+        openCurrentWindow(mailtoLink);
+      }
+    }, 900);
+
     return;
   }
 
-  window.location.href = `googlegmail://co?${query}`;
+  openCurrentWindow(`googlegmail://co?${query}`);
 
   window.setTimeout(() => {
     if (!document.hidden) {
-      window.location.href = emailLink;
+      openCurrentWindow(mailtoLink);
     }
   }, 1200);
 };
@@ -187,9 +203,7 @@ export const openGmailWithThankYou = (emailLink, feedbackOptions) => {
   markEmailAppOpened(feedbackOptions);
 
   if (emailLink.startsWith('mailto:')) {
-    window.setTimeout(() => {
-      window.location.href = emailLink;
-    }, 100);
+    openCurrentWindow(emailLink);
   } else {
     openGmailAppOrFallback(emailLink);
   }
