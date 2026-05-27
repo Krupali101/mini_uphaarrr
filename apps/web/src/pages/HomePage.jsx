@@ -76,13 +76,13 @@ function HomePage() {
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 justify-center">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 justify-center">
                 {featuredProducts.map((product, index) => (
                   <ProductCard key={product.id} product={product} index={index} />
                 ))}
               </div>
 
-              <div className="text-center mt-7 md:mt-12">
+              <div className="text-center mt-7 md:mt-9">
                 <Link to="/products">
                   <Button variant="outline" size="lg" className="transition-all duration-200 active:scale-[0.98]">
                     View All Products
@@ -93,14 +93,14 @@ function HomePage() {
             </div>
           </section>
 
-          <section className="pt-8 pb-10 md:pt-12 md:pb-20 bg-muted">
+          <section className="pt-8 pb-10 md:pt-10 md:pb-14 bg-muted">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-6 md:mb-12"
+                className="text-center mb-6 md:mb-8"
               >
                 <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                   What our customers say
@@ -118,14 +118,14 @@ function HomePage() {
             </div>
           </section>
 
-          <section className="py-10 md:py-20 bg-background">
+          <section className="py-10 md:py-14 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-6 md:mb-12"
+                className="text-center mb-6 md:mb-8"
               >
                 <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                   Gallery highlights
@@ -141,7 +141,7 @@ function HomePage() {
                 ))}
               </div>
 
-              <div className="text-center mt-7 md:mt-12">
+              <div className="text-center mt-7 md:mt-9">
                 <Link to="/gallery">
                   <Button variant="outline" size="lg" className="transition-all duration-200 active:scale-[0.98]">
                     View Full Gallery
@@ -152,7 +152,7 @@ function HomePage() {
             </div>
           </section>
 
-          <section className="py-10 md:py-20 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
+          <section className="py-10 md:py-14 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Instagram, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { getGmailLink } from '@/utils/contactUtils';
-import { showGmailThankYou } from '@/utils/gmailFeedback';
 
 function Footer() {
   const quickLinks = [
@@ -60,15 +59,7 @@ function Footer() {
                 href={getGmailLink('Mini_Uphaarrr Inquiry', 'Hi Mini_Uphaarrr,\n\nI would like to get in touch with you.\n\nThank you!')}
                 onClick={(event) => {
                   event.preventDefault();
-                  const emailLink = getGmailLink('Mini_Uphaarrr Inquiry', 'Hi Mini_Uphaarrr,\n\nI would like to get in touch with you.\n\nThank you!');
-
-                  showGmailThankYou({
-                    title: 'Thank you for reaching out!',
-                    description: 'Your email app is ready. Please tap Send there, and we will reply soon.'
-                  });
-                  window.setTimeout(() => {
-                    window.location.href = emailLink;
-                  }, 350);
+                  window.location.href = getGmailLink('Mini_Uphaarrr Inquiry', 'Hi Mini_Uphaarrr,\n\nI would like to get in touch with you.\n\nThank you!');
                 }}
               >
                 <Button variant="outline" className="w-full justify-start min-w-0 h-10 text-sm transition-all duration-200 active:scale-[0.98]">

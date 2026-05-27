@@ -11,7 +11,7 @@ import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import { toast } from 'sonner';
 import { getContactMessageGmailLink, getGmailLink } from '@/utils/contactUtils';
-import { openGmailWithThankYou, showGmailThankYou } from '@/utils/gmailFeedback';
+import { openGmailWithThankYou } from '@/utils/gmailFeedback';
 
 function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -72,13 +72,13 @@ function ContactPage() {
         <Header />
 
         <main className="flex-1">
-          <section className="py-10 md:py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+          <section className="py-10 md:py-14 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-6 md:mb-12"
+                className="text-center mb-6 md:mb-8"
               >
                 <h1 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                   Get in touch
@@ -88,7 +88,7 @@ function ContactPage() {
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-12 max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-8 max-w-6xl mx-auto">
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -224,13 +224,7 @@ function ContactPage() {
                                   onClick={(event) => {
                                     if (method.title === 'Email') {
                                       event.preventDefault();
-                                      showGmailThankYou({
-                                        title: 'Thank you for reaching out!',
-                                        description: 'Your email app is ready. Please tap Send there, and we will reply soon.'
-                                      });
-                                      window.setTimeout(() => {
-                                        window.location.href = method.link;
-                                      }, 350);
+                                      window.location.href = method.link;
                                     }
                                   }}
                                   className="block truncate text-primary hover:underline font-medium"

@@ -37,9 +37,9 @@ function AboutPage() {
         <Header />
 
         <main className="flex-1">
-          <section className="py-10 md:py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+          <section className="py-10 md:py-14 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-14 items-center max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-10 items-center max-w-6xl mx-auto">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -84,14 +84,14 @@ function AboutPage() {
             </div>
           </section>
 
-          <section className="py-10 md:py-20 bg-muted">
+          <section className="py-10 md:py-14 bg-muted">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-6 md:mb-12"
+                className="text-center mb-6 md:mb-8"
               >
                 <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                   Our values
@@ -101,7 +101,7 @@ function AboutPage() {
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
                 {values.map((value, index) => (
                   <motion.div
                     key={index}
@@ -129,7 +129,7 @@ function AboutPage() {
             </div>
           </section>
 
-          <section className="py-10 md:py-20 bg-background">
+          <section className="py-10 md:py-14 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
