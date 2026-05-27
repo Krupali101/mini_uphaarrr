@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Heart, Sparkles, Gift } from 'lucide-react';
+import { ArrowRight, Heart, Gift } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
@@ -31,65 +31,48 @@ function HomePage() {
         <Header />
 
         <main className="flex-1">
-          <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-            <div className="absolute inset-0 bg-[url('/images/gallery-website-1.webp')] bg-cover bg-center opacity-10" />
+          <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10">
+            <div className="absolute inset-0 bg-[url('/images/gallery-website-1.webp')] bg-cover bg-center opacity-[0.07]" />
             
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10 md:py-12 lg:py-14">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="max-w-4xl mx-auto text-center"
+                className="max-w-4xl"
               >
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6"
-                >
-                  <Sparkles className="w-4 h-4" />
-                  <span className="text-sm font-medium">Handcrafted with Love</span>
-                </motion.div>
+                <div className="max-w-3xl text-left">
+                  <h1 className="text-3xl font-bold leading-[1.1] sm:text-4xl md:text-5xl lg:text-6xl" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    <span className="text-primary">
+                      Handmade gifts,
+                    </span>
+                    <span className="block mt-2">
+                      customized for every moment
+                    </span>
+                  </h1>
 
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
-                  Handmade with love,<br />customized just for you
-                </h1>
-
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-                  Discover unique handmade gifts and customized surprise creations designed with creativity, elegance, and love to make your moments unforgettable.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link to="/custom-orders">
-                    <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 active:scale-[0.98] text-base px-8">
-                      Customize Your Gift
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </Button>
-                  </Link>
-                  <Link to="/products">
-                    <Button size="lg" variant="outline" className="transition-all duration-200 active:scale-[0.98] text-base px-8">
-                      Browse Products
-                    </Button>
-                  </Link>
+                  <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
+                    Customized bouquets, chocolate hampers, surprise gift boxes, photo frames, and handmade cards crafted to make birthdays, anniversaries, and little surprises feel personal.
+                  </p>
                 </div>
               </motion.div>
             </div>
           </section>
 
-          <section className="pt-20 pb-10 bg-background">
+          <section className="pt-10 pb-10 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12"
+                className="text-left mb-4"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
+                <h2 className="text-2xl md:text-3xl font-bold mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
                   Trending creations
                 </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                  Explore our most loved handmade gifts, carefully crafted to bring joy to your special moments
+                <p className="text-muted-foreground leading-relaxed">
+                  Explore our most loved handmade gifts
                 </p>
               </motion.div>
 
@@ -127,7 +110,7 @@ function HomePage() {
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {testimonials.slice(0, 4).map((testimonial, index) => (
                   <ReviewCard key={testimonial.id} testimonial={testimonial} index={index} />
                 ))}
