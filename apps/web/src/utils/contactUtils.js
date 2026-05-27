@@ -5,7 +5,9 @@ export const getInstagramDMLink = () => {
 export const getGmailLink = (subject = '', body = '') => {
   const encodedSubject = encodeURIComponent(subject);
   const encodedBody = encodeURIComponent(body);
-  return `mailto:officialminiuphaarrr@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
+  const encodedRecipient = encodeURIComponent('officialminiuphaarrr@gmail.com');
+
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodedRecipient}&su=${encodedSubject}&body=${encodedBody}`;
 };
 
 export const getProductOrderGmailLink = (productName = '') => {

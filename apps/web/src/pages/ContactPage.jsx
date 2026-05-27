@@ -57,7 +57,11 @@ function ContactPage() {
       title: 'Email',
       value: 'officialminiuphaarrr@gmail.com',
       link: getGmailLink('Mini_Uphaarrr Inquiry', 'Hi Mini_Uphaarrr,\n\nI would like to get in touch with you.\n\nThank you!'),
-      description: 'Send us your inquiries anytime'
+      description: 'Send us your inquiries anytime',
+      feedback: {
+        title: 'Thank you for contacting us!',
+        description: 'Your email app is ready with your message, and we will get back to you soon.'
+      }
     }
   ];
 
@@ -224,7 +228,7 @@ function ContactPage() {
                                   onClick={(event) => {
                                     if (method.title === 'Email') {
                                       event.preventDefault();
-                                      window.location.href = method.link;
+                                      openGmailWithThankYou(method.link, method.feedback);
                                     }
                                   }}
                                   className="block truncate text-primary hover:underline font-medium"
