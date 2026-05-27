@@ -34,7 +34,7 @@ function HomePage() {
           <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10">
             <div className="absolute inset-0 bg-[url('/images/gallery-website-1.webp')] bg-cover bg-center opacity-[0.07]" />
             
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10 md:py-12 lg:py-14">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-[2.3rem] md:py-12 lg:py-14">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ function HomePage() {
             </div>
           </section>
 
-          <section className="pt-10 pb-10 bg-background">
+          <section className="pt-[2.3rem] pb-10 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
