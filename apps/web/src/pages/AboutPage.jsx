@@ -37,25 +37,25 @@ function AboutPage() {
         <Header />
 
         <main className="flex-1">
-          <section className="py-16 md:py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+          <section className="py-10 md:py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-14 items-center max-w-6xl mx-auto">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
+                  <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-4 md:mb-6">
                     <Sparkles className="w-4 h-4" />
                     <span className="text-sm font-medium">Thoughtful handmade gifting</span>
                   </div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
+                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-3 md:mb-5" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                     About Mini_Uphaarrr
                   </h1>
-                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-5 md:mb-8">
                     We create personalized gifts, surprise boxes, bouquets, and keepsakes that feel warm, detailed, and made especially for your moment.
                   </p>
-                  <div className="space-y-4 text-base leading-relaxed text-foreground/90 mb-8">
+                  <div className="space-y-3 md:space-y-4 text-sm md:text-base leading-relaxed text-foreground/90 mb-6 md:mb-8">
                     <p>
                       Mini_Uphaarrr began with a love for turning simple ideas into memorable handmade gifts. Every order is planned around the person receiving it, from the colors and wrapping to the small details that make it feel personal.
                     </p>
@@ -84,16 +84,16 @@ function AboutPage() {
             </div>
           </section>
 
-          <section className="py-20 bg-muted">
+          <section className="py-10 md:py-20 bg-muted">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12"
+                className="text-center mb-6 md:mb-12"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
+                <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                   Our values
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -101,7 +101,7 @@ function AboutPage() {
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto">
                 {values.map((value, index) => (
                   <motion.div
                     key={index}
@@ -111,11 +111,11 @@ function AboutPage() {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <Card className="h-full text-center hover:shadow-lg transition-all duration-300">
-                      <CardContent className="pt-8 pb-6">
-                        <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                          <value.icon className="w-8 h-8 text-primary" />
+                      <CardContent className="pt-5 pb-4 md:pt-8 md:pb-6">
+                        <div className="w-12 h-12 md:w-16 md:h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+                          <value.icon className="w-6 h-6 md:w-8 md:h-8 text-primary" />
                         </div>
-                        <h3 className="text-xl font-semibold mb-3">
+                        <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">
                           {value.title}
                         </h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -129,7 +129,7 @@ function AboutPage() {
             </div>
           </section>
 
-          <section className="py-20 bg-background">
+          <section className="py-10 md:py-20 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -138,10 +138,10 @@ function AboutPage() {
                 transition={{ duration: 0.6 }}
                 className="max-w-3xl mx-auto text-center"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
+                <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                   Our mission
                 </h2>
-                <p className="text-lg leading-relaxed text-foreground/90 mb-8">
+                <p className="text-base md:text-lg leading-relaxed text-foreground/90 mb-6 md:mb-8">
                   To create beautiful, personalized gifts that celebrate life's special moments and bring joy to both the giver and receiver. We're committed to quality craftsmanship, creative design, and making every celebration unforgettable.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">

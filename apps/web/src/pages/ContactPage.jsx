@@ -72,23 +72,23 @@ function ContactPage() {
         <Header />
 
         <main className="flex-1">
-          <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+          <section className="py-10 md:py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12"
+                className="text-center mb-6 md:mb-12"
               >
-                <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
+                <h1 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                   Get in touch
                 </h1>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                   Have a question or want to place a custom order? We'd love to hear from you
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-12 max-w-6xl mx-auto">
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -96,7 +96,7 @@ function ContactPage() {
                 >
                   <Card>
                     <CardHeader>
-                      <CardTitle className="text-2xl" style={{ fontFamily: 'Playfair Display, serif' }}>
+                      <CardTitle className="text-xl md:text-2xl" style={{ fontFamily: 'Playfair Display, serif' }}>
                         Send us a message
                       </CardTitle>
                       <CardDescription>
@@ -104,8 +104,8 @@ function ContactPage() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                           <div className="space-y-2">
                             <Label htmlFor="name">Name *</Label>
                             <Input
@@ -135,7 +135,7 @@ function ContactPage() {
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                           <div className="space-y-2">
                             <Label htmlFor="phone">Phone Number</Label>
                             <Input
@@ -201,39 +201,43 @@ function ContactPage() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="space-y-6"
+                  className="space-y-5 md:space-y-6"
                 >
                   <div>
-                    <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
+                    <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                       Contact information
                     </h2>
-                    <div className="space-y-4">
+                    <div className="space-y-3 md:space-y-4">
                       {contactMethods.map((method, index) => (
                         <Card key={index} className="hover:shadow-lg transition-all duration-300">
-                          <CardContent className="p-6">
-                            <div className="flex items-start gap-4">
-                              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <method.icon className="w-6 h-6 text-primary" />
+                          <CardContent className="p-4 md:p-6">
+                            <div className="flex items-start gap-3 md:gap-4">
+                              <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <method.icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                               </div>
-                              <div className="flex-1">
+                              <div className="min-w-0 flex-1">
                                 <h3 className="font-semibold mb-1">{method.title}</h3>
                                 <a
                                   href={method.link}
                                   target={method.title === 'Email' ? undefined : '_blank'}
                                   rel={method.title === 'Email' ? undefined : 'noopener noreferrer'}
-                                  onClick={() => {
+                                  onClick={(event) => {
                                     if (method.title === 'Email') {
+                                      event.preventDefault();
                                       showGmailThankYou({
                                         title: 'Thank you for reaching out!',
                                         description: 'Your email app is ready. Please tap Send there, and we will reply soon.'
                                       });
+                                      window.setTimeout(() => {
+                                        window.location.href = method.link;
+                                      }, 350);
                                     }
                                   }}
-                                  className="text-primary hover:underline font-medium"
+                                  className="block truncate text-primary hover:underline font-medium"
                                 >
                                   {method.value}
                                 </a>
-                                <p className="text-sm text-muted-foreground mt-1">
+                                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
                                   {method.description}
                                 </p>
                               </div>
@@ -245,8 +249,8 @@ function ContactPage() {
                   </div>
 
                   <Card className="bg-gradient-to-br from-primary/5 to-secondary/5">
-                    <CardContent className="p-6">
-                      <h3 className="font-semibold mb-3">Quick response times</h3>
+                    <CardContent className="p-4 md:p-6">
+                      <h3 className="font-semibold mb-2 md:mb-3">Quick response times</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         We typically respond to all inquiries within 24 hours. For urgent custom orders, reach out via Instagram DM for the fastest response.
                       </p>

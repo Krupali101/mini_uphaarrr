@@ -13,7 +13,7 @@ function ReviewCard({ testimonial, index }) {
     >
       <Card className="h-full bg-card hover:shadow-lg transition-all duration-300">
         <CardHeader>
-          <div className="flex gap-1 mb-3">
+          <div className="flex gap-1 mb-2 md:mb-3">
             {[...Array(testimonial.rating)].map((_, i) => (
               <Star key={i} className="w-4 h-4 fill-primary text-primary" />
             ))}
@@ -23,7 +23,7 @@ function ReviewCard({ testimonial, index }) {
           </p>
         </CardHeader>
         <CardContent>
-          <blockquote className="text-base leading-relaxed mb-4 italic">
+          <blockquote className="text-sm md:text-base leading-relaxed mb-3 md:mb-4 italic">
             "{testimonial.review}"
           </blockquote>
           <p className="font-semibold text-foreground">

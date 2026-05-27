@@ -58,10 +58,18 @@ function Footer() {
               </a>
               <a
                 href={getGmailLink('Mini_Uphaarrr Inquiry', 'Hi Mini_Uphaarrr,\n\nI would like to get in touch with you.\n\nThank you!')}
-                onClick={() => showGmailThankYou({
-                  title: 'Thank you for reaching out!',
-                  description: 'Your email app is ready. Please tap Send there, and we will reply soon.'
-                })}
+                onClick={(event) => {
+                  event.preventDefault();
+                  const emailLink = getGmailLink('Mini_Uphaarrr Inquiry', 'Hi Mini_Uphaarrr,\n\nI would like to get in touch with you.\n\nThank you!');
+
+                  showGmailThankYou({
+                    title: 'Thank you for reaching out!',
+                    description: 'Your email app is ready. Please tap Send there, and we will reply soon.'
+                  });
+                  window.setTimeout(() => {
+                    window.location.href = emailLink;
+                  }, 350);
+                }}
               >
                 <Button variant="outline" className="w-full justify-start min-w-0 h-10 text-sm transition-all duration-200 active:scale-[0.98]">
                   <Mail className="w-4 h-4 mr-2 shrink-0" />

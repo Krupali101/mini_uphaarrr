@@ -42,11 +42,13 @@ export const showGmailThankYou = ({
 };
 
 export const openGmailWithThankYou = (emailLink, feedbackOptions) => {
+  showGmailThankYou(feedbackOptions);
+
   if (emailLink.startsWith('mailto:')) {
-    window.location.href = emailLink;
+    window.setTimeout(() => {
+      window.location.href = emailLink;
+    }, 350);
   } else {
     window.open(emailLink, '_blank', 'noopener,noreferrer');
   }
-
-  showGmailThankYou(feedbackOptions);
 };

@@ -51,7 +51,7 @@ function HomePage() {
                     </span>
                   </h1>
 
-                  <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
+                  <p className="mt-4 md:mt-6 text-base md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
                     Customized bouquets, chocolate hampers, surprise gift boxes, photo frames, and handmade cards crafted to make birthdays, anniversaries, and little surprises feel personal.
                   </p>
                 </div>
@@ -76,13 +76,13 @@ function HomePage() {
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 justify-center">
                 {featuredProducts.map((product, index) => (
                   <ProductCard key={product.id} product={product} index={index} />
                 ))}
               </div>
 
-              <div className="text-center mt-12">
+              <div className="text-center mt-7 md:mt-12">
                 <Link to="/products">
                   <Button variant="outline" size="lg" className="transition-all duration-200 active:scale-[0.98]">
                     View All Products
@@ -93,16 +93,16 @@ function HomePage() {
             </div>
           </section>
 
-          <section className="pt-12 pb-20 bg-muted">
+          <section className="pt-8 pb-10 md:pt-12 md:pb-20 bg-muted">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12"
+                className="text-center mb-6 md:mb-12"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
+                <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                   What our customers say
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -110,7 +110,7 @@ function HomePage() {
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 {testimonials.slice(0, 4).map((testimonial, index) => (
                   <ReviewCard key={testimonial.id} testimonial={testimonial} index={index} />
                 ))}
@@ -118,16 +118,16 @@ function HomePage() {
             </div>
           </section>
 
-          <section className="py-20 bg-background">
+          <section className="py-10 md:py-20 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12"
+                className="text-center mb-6 md:mb-12"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
+                <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                   Gallery highlights
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -141,7 +141,7 @@ function HomePage() {
                 ))}
               </div>
 
-              <div className="text-center mt-12">
+              <div className="text-center mt-7 md:mt-12">
                 <Link to="/gallery">
                   <Button variant="outline" size="lg" className="transition-all duration-200 active:scale-[0.98]">
                     View Full Gallery
@@ -152,7 +152,7 @@ function HomePage() {
             </div>
           </section>
 
-          <section className="py-20 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
+          <section className="py-10 md:py-20 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -161,11 +161,11 @@ function HomePage() {
                 transition={{ duration: 0.6 }}
                 className="max-w-3xl mx-auto text-center"
               >
-                <Gift className="w-16 h-16 text-primary mx-auto mb-6" />
-                <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
+                <Gift className="w-12 h-12 md:w-16 md:h-16 text-primary mx-auto mb-4 md:mb-6" />
+                <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                   Ready to create something special?
                 </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 md:mb-8">
                   Let us help you design the perfect gift for your loved ones. Every creation is personalized to match your vision and make your celebration unforgettable.
                 </p>
                 <Link to="/custom-orders">

@@ -64,22 +64,22 @@ function CustomOrdersPage() {
         <Header />
 
         <main className="flex-1">
-          <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+          <section className="py-10 md:py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12"
+                className="text-center mb-6 md:mb-12"
               >
-                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
+                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-4 md:mb-6">
                   <Sparkles className="w-4 h-4" />
                   <span className="text-sm font-medium">Personalized Just for You</span>
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
+                <h1 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                   Create your custom gift
                 </h1>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                   Share your vision with us and we'll create a unique handmade gift tailored to your special occasion
                 </p>
               </motion.div>
@@ -92,7 +92,7 @@ function CustomOrdersPage() {
                 >
                   <Card>
                     <CardHeader>
-                      <CardTitle className="text-2xl" style={{ fontFamily: 'Playfair Display, serif' }}>
+                      <CardTitle className="text-xl md:text-2xl" style={{ fontFamily: 'Playfair Display, serif' }}>
                         Custom order request
                       </CardTitle>
                       <CardDescription>
@@ -100,8 +100,8 @@ function CustomOrdersPage() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                           <div className="space-y-2">
                             <Label htmlFor="name">Name *</Label>
                             <Input
@@ -144,7 +144,7 @@ function CustomOrdersPage() {
                           />
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                           <div className="space-y-2">
                             <Label htmlFor="category">Product Category *</Label>
                             <Select 
