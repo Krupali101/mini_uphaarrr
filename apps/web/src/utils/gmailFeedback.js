@@ -2,6 +2,7 @@ import { toast } from 'sonner';
 
 const PENDING_FEEDBACK_KEY = 'mini_uphaarrr_pending_email_feedback';
 const FEEDBACK_RETURN_WINDOW_MS = 10 * 60 * 1000;
+const GMAIL_WEB_ORIGIN = 'https://mail.google.com';
 
 const showBrowserNotification = async (title, description) => {
   if (typeof window === 'undefined' || !('Notification' in window)) {
@@ -132,6 +133,55 @@ const armReturnFeedback = () => {
   window.setTimeout(showPendingFeedbackIfReady, 300);
 };
 
+const getGmailComposeParams = (emailLink) => {
+  try {
+    const url = new URL(emailLink);
+
+    if (url.origin !== GMAIL_WEB_ORIGIN) {
+      return null;
+    }
+
+    return {
+      to: url.searchParams.get('to') || '',
+      subject: url.searchParams.get('su') || '',
+      body: url.searchParams.get('body') || ''
+    };
+  } catch {
+    return null;
+  }
+};
+
+const openGmailAppOrFallback = (emailLink) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  const composeParams = getGmailComposeParams(emailLink);
+  const userAgent = window.navigator.userAgent || '';
+  const isAndroid = /Android/i.test(userAgent);
+  const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
+
+  if (!composeParams || (!isAndroid && !isIOS)) {
+    window.open(emailLink, '_blank', 'noopener,noreferrer');
+    return;
+  }
+
+  const query = `to=${encodeURIComponent(composeParams.to)}&subject=${encodeURIComponent(composeParams.subject)}&body=${encodeURIComponent(composeParams.body)}`;
+
+  if (isAndroid) {
+    window.location.href = `intent://co?${query}#Intent;scheme=googlegmail;package=com.google.android.gm;S.browser_fallback_url=${encodeURIComponent(emailLink)};end`;
+    return;
+  }
+
+  window.location.href = `googlegmail://co?${query}`;
+
+  window.setTimeout(() => {
+    if (!document.hidden) {
+      window.location.href = emailLink;
+    }
+  }, 1200);
+};
+
 export const openGmailWithThankYou = (emailLink, feedbackOptions) => {
   armReturnFeedback();
   markEmailAppOpened(feedbackOptions);
@@ -141,7 +191,7 @@ export const openGmailWithThankYou = (emailLink, feedbackOptions) => {
       window.location.href = emailLink;
     }, 100);
   } else {
-    window.open(emailLink, '_blank', 'noopener,noreferrer');
+    openGmailAppOrFallback(emailLink);
   }
 };
 
