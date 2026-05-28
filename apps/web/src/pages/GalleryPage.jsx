@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
+
+function GalleryItem({ image, index }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '80px' }}
+      transition={{ duration: 0.45, delay: Math.min(index * 0.015, 0.18), ease: 'easeOut' }}
+      className="break-inside-avoid overflow-hidden rounded-lg bg-muted shadow-sm"
+    >
+      <img
+        src={`/images/gallery/${image}`}
+        alt={`Mini Uphaarrr handmade creation ${index + 1}`}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setIsLoaded(true)}
+        className={`w-full h-auto object-cover transition-all duration-700 ease-out ${
+          isLoaded ? 'opacity-100 blur-0 scale-100' : 'opacity-0 blur-sm scale-[1.02]'
+        }`}
+      />
+    </motion.div>
+  );
+}
 
 function GalleryPage() {
   const galleryImages = [
@@ -71,21 +96,7 @@ function GalleryPage() {
 
               <div className="columns-2 lg:columns-3 xl:columns-4 gap-3 md:gap-4 space-y-3 md:space-y-4">
                 {galleryImages.map((image, index) => (
-                  <motion.div
-                    key={image}
-                    initial={{ opacity: 0, scale: 0.96 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.35, delay: index * 0.025 }}
-                    className="break-inside-avoid overflow-hidden rounded-lg bg-muted shadow-sm"
-                  >
-                    <img
-                      src={`/images/gallery/${image}`}
-                      alt={`Mini Uphaarrr handmade creation ${index + 1}`}
-                      loading="lazy"
-                      className="w-full h-auto object-cover"
-                    />
-                  </motion.div>
+                  <GalleryItem key={image} image={image} index={index} />
                 ))}
               </div>
             </div>
