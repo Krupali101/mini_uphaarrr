@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header.jsx';
@@ -12,17 +12,21 @@ function GalleryItem({ image, index }) {
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '80px' }}
-      transition={{ duration: 0.45, delay: Math.min(index * 0.015, 0.18), ease: 'easeOut' }}
-      className="break-inside-avoid overflow-hidden rounded-lg bg-muted shadow-sm"
+      transition={{ duration: 0.45, delay: Math.min((index % 8) * 0.035, 0.18), ease: 'easeOut' }}
+      className="relative aspect-[4/5] overflow-hidden rounded-lg bg-muted shadow-sm"
     >
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-gradient-to-br from-muted via-background to-muted" />
+      )}
       <img
         src={`/images/gallery/${image}`}
         alt={`Mini Uphaarrr handmade creation ${index + 1}`}
         loading="lazy"
         decoding="async"
+        fetchPriority={index < 6 ? 'high' : 'low'}
         onLoad={() => setIsLoaded(true)}
-        className={`w-full h-auto object-cover transition-all duration-700 ease-out ${
-          isLoaded ? 'opacity-100 blur-0 scale-100' : 'opacity-0 blur-sm scale-[1.02]'
+        className={`absolute inset-0 h-full w-full object-cover transition-all duration-1000 ease-out ${
+          isLoaded ? 'opacity-100 blur-0 scale-100' : 'opacity-0 blur-md scale-[1.03]'
         }`}
       />
     </motion.div>
@@ -66,6 +70,20 @@ function GalleryPage() {
     '0a7422d7-10ca-49dd-b16d-e291cd8a8446.png',
     'ChatGPT Image May 28, 2026, 08_41_55 PM.png'
   ];
+  const [visibleCount, setVisibleCount] = useState(8);
+  const visibleImages = galleryImages.slice(0, visibleCount);
+
+  useEffect(() => {
+    if (visibleCount >= galleryImages.length) {
+      return undefined;
+    }
+
+    const timer = window.setTimeout(() => {
+      setVisibleCount((currentCount) => Math.min(currentCount + 4, galleryImages.length));
+    }, 220);
+
+    return () => window.clearTimeout(timer);
+  }, [galleryImages.length, visibleCount]);
 
   return (
     <>
@@ -94,8 +112,8 @@ function GalleryPage() {
                 </p>
               </motion.div>
 
-              <div className="columns-2 lg:columns-3 xl:columns-4 gap-3 md:gap-4 space-y-3 md:space-y-4">
-                {galleryImages.map((image, index) => (
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+                {visibleImages.map((image, index) => (
                   <GalleryItem key={image} image={image} index={index} />
                 ))}
               </div>
