@@ -1,21 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Instagram, Mail } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { getInstagramDMLink, getProductOrderGmailLink } from '@/utils/contactUtils';
-import { openGmailWithThankYou } from '@/utils/gmailFeedback';
+import { getInstagramDMLink } from '@/utils/contactUtils';
 
 function ProductCard({ product }) {
-  const handleInstagramOrder = () => {
+  const handleOrderNow = () => {
     window.open(getInstagramDMLink(), '_blank');
-  };
-
-  const handleGmailOrder = () => {
-    openGmailWithThankYou(getProductOrderGmailLink(product.name), {
-      title: 'Thank you for your order request!',
-      description: 'Your email app is ready with your product details, and we will contact you soon.'
-    });
   };
 
   return (
@@ -41,21 +33,13 @@ function ProductCard({ product }) {
             {product.description}
           </CardDescription>
         </CardHeader>
-        <CardFooter className="mt-auto flex flex-col gap-3">
+        <CardFooter className="mt-auto">
           <Button
-            onClick={handleInstagramOrder}
+            onClick={handleOrderNow}
             className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 active:scale-[0.98]"
           >
             <Instagram className="w-4 h-4 mr-2" />
-            Order via Instagram
-          </Button>
-          <Button
-            onClick={handleGmailOrder}
-            variant="outline"
-            className="w-full transition-all duration-200 active:scale-[0.98]"
-          >
-            <Mail className="w-4 h-4 mr-2" />
-            Order via Email
+            Order Now
           </Button>
         </CardFooter>
       </Card>

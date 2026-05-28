@@ -25,7 +25,7 @@ function Header() {
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
             <span className="text-2xl font-bold text-primary" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Mini_Uphaarrr
+              Mini Uphaarrr
             </span>
           </Link>
 
