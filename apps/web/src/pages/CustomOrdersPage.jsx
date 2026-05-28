@@ -212,7 +212,7 @@ function CustomOrdersPage() {
                           ) : (
                             <>
                               <Send className="w-4 h-4 mr-2" />
-                              Open Email App to Send Request
+                              Custom Order Now
                             </>
                           )}
                         </Button>

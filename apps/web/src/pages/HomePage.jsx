@@ -8,16 +8,15 @@ import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import ProductCard from '@/components/ProductCard.jsx';
 import ReviewCard from '@/components/ReviewCard.jsx';
-import GalleryImage from '@/components/GalleryImage.jsx';
 import { featuredProducts } from '@/constants/productsData';
 import { testimonials } from '@/constants/testimonialsData';
 
 function HomePage() {
   const galleryPreview = [
-    { url: '/images/gallery-website-23.jpg', alt: 'Black framed customized photo collage featuring multiple memorable moments' },
-    { url: '/images/gallery-website-6.webp', alt: 'Handcrafted gift creation' },
-    { url: '/images/gallery-website-10.webp', alt: 'Handcrafted gift creation' },
-    { url: '/images/gallery-website-18.jpg', alt: 'Handcrafted gift creation' }
+    { url: '/images/gallery-website-23.jpg', alt: 'Customized photo frame with family photos' },
+    { url: '/images/gallery-website-6.webp', alt: 'Handcrafted bouquet with sweets and soft toy' },
+    { url: '/images/gallery-website-10.webp', alt: 'Handmade candy greeting cards' },
+    { url: '/images/gallery-website-18.jpg', alt: 'Lighted personalized photo frame gift' }
   ];
 
   return (
@@ -32,8 +31,6 @@ function HomePage() {
 
         <main className="flex-1">
           <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-            <div className="absolute inset-0 bg-[url('/images/gallery-website-1.webp')] bg-cover bg-center opacity-[0.07]" />
-            
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-[2.3rem] md:py-12 lg:py-14">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -137,7 +134,21 @@ function HomePage() {
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {galleryPreview.map((image, index) => (
-                  <GalleryImage key={index} image={image} index={index} />
+                  <motion.div
+                    key={image.url}
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.35, delay: index * 0.05 }}
+                    className="aspect-square overflow-hidden rounded-lg bg-muted shadow-sm"
+                  >
+                    <img
+                      src={image.url}
+                      alt={image.alt}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  </motion.div>
                 ))}
               </div>
 

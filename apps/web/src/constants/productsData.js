@@ -13,9 +13,9 @@ const luxurySurpriseGiftBoxImage = '/images/product-luxury-surprise-gift-box.jpg
 const handmadeGreetingCardImage = '/images/product-handmade-greeting-card.jpg';
 const homeCustomizedGiftBouquetImage = '/images/home-customized-gift-bouquet.png';
 const homeBlackLuxuryChocolateBouquetImage = '/images/home-black-luxury-chocolate-bouquet.png';
-const homePinkGiftBoxImage = '/images/home-pink-gift-box.jpg';
+const homeAestheticSurpriseHamperImage = '/images/home-aesthetic-surprise-hamper.jpg';
 const homeHandmadeGreetingCardsImage = '/images/home-handmade-greeting-cards-collection.jpg';
-const homeKinderJoyBouquetImage = '/images/home-kinder-joy-bouquet.jpg';
+const homeLuxuryVelvetLilyBouquetImage = '/images/home-luxury-velvet-lily-bouquet.png';
 
 export const productCategories = [
   {
@@ -163,9 +163,9 @@ export const featuredProducts = [
   },
   {
     id: 501,
-    name: 'Pink Gift Box',
-    description: 'Curated pink gift box containing matching pink tumbler, kisses chocolate, a decorative candle, and soft flower arrangements',
-    image: homePinkGiftBoxImage,
+    name: 'Aesthetic Surprise Hamper',
+    description: 'Premium gift hamper featuring stylish fashion products and elegant accessories with luxury aesthetic packaging.',
+    image: homeAestheticSurpriseHamperImage,
     category: 'Surprise Gift Boxes'
   },
   {
@@ -177,9 +177,9 @@ export const featuredProducts = [
   },
   {
     id: 201,
-    name: 'Kinder Joy Bouquet',
-    description: 'Delightful Kinder Joy chocolate bouquet wrapped in vibrant pink and yellow premium paper',
-    image: homeKinderJoyBouquetImage,
-    category: 'Kinder Joy Bouquets'
+    name: 'Luxury Velvet Lily Bouquet',
+    description: 'Elegant handmade crimson & white bouquet with premium aesthetic wrapping - perfect for gifting and special moments.',
+    image: homeLuxuryVelvetLilyBouquetImage,
+    category: 'Customized Bouquets'
   }
 ];

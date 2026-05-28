@@ -3,52 +3,43 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
-import GalleryImage from '@/components/GalleryImage.jsx';
 
 function GalleryPage() {
   const galleryImages = [
-    { url: '/images/home-customized-gift-bouquet.png', alt: 'Customized Gift Bouquet' },
-    { url: '/images/home-black-luxury-chocolate-bouquet.png', alt: 'Black Luxury Chocolate Bouquet' },
-    { url: '/images/gallery-customized-gift-bouquet-h17.jpg', alt: 'Customized Gift Bouquet' },
-    { url: '/images/gallery-customized-gift-bouquet-h1.jpg', alt: 'Customized Gift Bouquet with skincare and jewelry' },
-    { url: '/images/gallery-gift-creation-h2.jpg', alt: 'Mini_Uphaarrr handmade gift creation' },
-    { url: '/images/gallery-black-luxury-chocolate-bouquet-h7.jpg', alt: 'Black Luxury Chocolate Bouquet with treats and ribbons' },
-    { url: '/images/gallery-gift-creation-h15.jpg', alt: 'Mini_Uphaarrr handmade gift creation' },
-    { url: '/images/gallery-gift-creation-h13.jpg', alt: 'Mini_Uphaarrr handmade gift creation' },
-    { url: '/images/gallery-gift-creation-h14.jpg', alt: 'Mini_Uphaarrr handmade gift creation' },
-    { url: '/images/gallery-gift-creation-h18.jpg', alt: 'Mini_Uphaarrr handmade gift creation' },
-    { url: '/images/gallery-h-00.jpg', alt: 'Mini_Uphaarrr handmade gift creation' },
-    { url: '/images/gallery-pink-gift-box-2-2.jpg', alt: 'Pink Gift Box' },
-    { url: '/images/home-handmade-greeting-cards-collection.jpg', alt: 'Handmade Greeting Cards Collection' },
-    { url: '/images/home-kinder-joy-bouquet.jpg', alt: 'Kinder Joy Bouquet' },
-    { url: '/images/gallery-website-1.webp', alt: 'Mini_Uphaarrr handmade gift creation 1' },
-    { url: '/images/gallery-website-2.webp', alt: 'Mini_Uphaarrr handmade gift creation 2' },
-    { url: '/images/gallery-website-3.jpg', alt: 'Mini_Uphaarrr handmade gift creation 3' },
-    { url: '/images/gallery-website-4.webp', alt: 'Mini_Uphaarrr handmade gift creation 4' },
-    { url: '/images/gallery-website-5.webp', alt: 'Mini_Uphaarrr handmade gift creation 5' },
-    { url: '/images/gallery-website-6.webp', alt: 'Mini_Uphaarrr handmade gift creation 6' },
-    { url: '/images/gallery-website-7.webp', alt: 'Mini_Uphaarrr handmade gift creation 7' },
-    { url: '/images/gallery-website-8.webp', alt: 'Mini_Uphaarrr handmade gift creation 8' },
-    { url: '/images/gallery-website-9.webp', alt: 'Mini_Uphaarrr handmade gift creation 9' },
-    { url: '/images/gallery-website-10.webp', alt: 'Mini_Uphaarrr handmade gift creation 10' },
-    { url: '/images/gallery-website-11.webp', alt: 'Mini_Uphaarrr handmade gift creation 11' },
-    { url: '/images/gallery-website-12.webp', alt: 'Mini_Uphaarrr handmade gift creation 12' },
-    { url: '/images/gallery-website-13.webp', alt: 'Mini_Uphaarrr handmade gift creation 13' },
-    { url: '/images/gallery-website-14.webp', alt: 'Mini_Uphaarrr handmade gift creation 14' },
-    { url: '/images/gallery-website-15.webp', alt: 'Mini_Uphaarrr handmade gift creation 15' },
-    { url: '/images/gallery-website-16.jpg', alt: 'Mini_Uphaarrr handmade gift creation 16' },
-    { url: '/images/gallery-website-17.jpg', alt: 'Mini_Uphaarrr handmade gift creation 17' },
-    { url: '/images/gallery-website-18.jpg', alt: 'Mini_Uphaarrr handmade gift creation 18' },
-    { url: '/images/gallery-website-19.jpg', alt: 'Mini_Uphaarrr handmade gift creation 19' },
-    { url: '/images/gallery-website-20.png', alt: 'Mini_Uphaarrr handmade gift creation 20' },
-    { url: '/images/gallery-website-21.png', alt: 'Mini_Uphaarrr handmade gift creation 21' },
-    { url: '/images/home-pink-gift-box.jpg', alt: 'Pink Gift Box' },
-    { url: '/images/product-custom-premium-bouquet.jpg', alt: 'Custom Premium Bouquet' },
-    { url: '/images/product-chocolate-hamper.jpg', alt: 'Chocolate Hamper' },
-    { url: '/images/product-handmade-greeting-card.jpg', alt: 'Handmade Greeting Card' },
-    { url: '/images/product-surprise-gift-box.jpg', alt: 'Surprise Gift Box' },
-    { url: '/images/product-luxury-surprise-gift-box.jpg', alt: 'Luxury Surprise Gift Box' },
-    { url: '/images/kinder-joy-bouquet.png', alt: 'Kinder Joy Bouquet' }
+    '0.png',
+    '00.jpg',
+    '6.webp',
+    '7.webp',
+    '08.png',
+    '8.webp',
+    '19.jpg',
+    '10.webp',
+    '11.webp',
+    '12.png',
+    '12.webp',
+    '13.png',
+    '13.webp',
+    '14.png',
+    '14.webp',
+    '15.webp',
+    '16.jpg',
+    '17.jpg',
+    '18.jpg',
+    'ca5bc64532d31bdc1d5007f5720c9d2b.jpg',
+    'h_00.jpg',
+    'h_2.jpg',
+    'h_18.jpg',
+    'h_13.jpg',
+    'h_14.jpg',
+    'h_15.jpg',
+    'h_17.jpg',
+    'h_7.jpg',
+    'h_6.jpg',
+    'a7636a82a8c8e8104eaf12cec641db9e.jpg',
+    '61d3e071-65a1-4b77-840b-453dac9095ca.png',
+    '48142d3906dec6222c42722e75e4d375.jpg',
+    '0a7422d7-10ca-49dd-b16d-e291cd8a8446.png',
+    'ChatGPT Image May 28, 2026, 08_41_55 PM.png'
   ];
 
   return (
@@ -80,7 +71,21 @@ function GalleryPage() {
 
               <div className="columns-2 lg:columns-3 xl:columns-4 gap-3 md:gap-4 space-y-3 md:space-y-4">
                 {galleryImages.map((image, index) => (
-                  <GalleryImage key={image.url} image={image} index={index} />
+                  <motion.div
+                    key={image}
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.35, delay: index * 0.025 }}
+                    className="break-inside-avoid overflow-hidden rounded-lg bg-muted shadow-sm"
+                  >
+                    <img
+                      src={`/images/gallery/${image}`}
+                      alt={`Mini Uphaarrr handmade creation ${index + 1}`}
+                      loading="lazy"
+                      className="w-full h-auto object-cover"
+                    />
+                  </motion.div>
                 ))}
               </div>
             </div>
