@@ -37,8 +37,9 @@ function GalleryItem({ image, index }) {
 
   return (
     <div
-      className="relative mb-3 break-inside-avoid overflow-hidden rounded-lg bg-muted shadow-sm transform-gpu sm:mb-4"
+      className="group relative mb-3 break-inside-avoid overflow-hidden rounded-lg bg-muted shadow-sm transform-gpu select-none sm:mb-4"
       style={{ aspectRatio: galleryImageAspects[image] || '4 / 5' }}
+      onContextMenu={(event) => event.preventDefault()}
     >
       <div
         className={`absolute inset-0 bg-muted transition-opacity duration-700 ease-out ${
@@ -51,13 +52,13 @@ function GalleryItem({ image, index }) {
         loading="lazy"
         decoding="async"
         fetchPriority={index < 6 ? 'high' : 'low'}
+        draggable={false}
         onLoad={() => setIsLoaded(true)}
-        className={`absolute inset-0 h-full w-full object-cover transform-gpu transition-all ease-out ${
+        className={`no-browser-image-action absolute inset-0 h-full w-full object-cover transform-gpu transition-all duration-500 ease-out group-hover:scale-105 group-active:scale-105 ${
           isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.01]'
         }`}
         style={{
-          transitionDelay: `${Math.min((index % 8) * 45, 260)}ms`,
-          transitionDuration: '1200ms'
+          transitionDelay: isLoaded ? '0ms' : `${Math.min((index % 8) * 45, 260)}ms`
         }}
       />
     </div>

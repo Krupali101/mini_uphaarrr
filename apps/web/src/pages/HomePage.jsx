@@ -140,13 +140,14 @@ function HomePage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.35, delay: index * 0.05 }}
-                    className="aspect-square overflow-hidden rounded-lg bg-muted shadow-sm"
+                    className="group aspect-square overflow-hidden rounded-lg bg-muted shadow-sm"
                   >
                     <img
                       src={image.url}
                       alt={image.alt}
                       loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                      draggable={false}
+                      className="no-browser-image-action h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 group-active:scale-105"
                     />
                   </motion.div>
                 ))}

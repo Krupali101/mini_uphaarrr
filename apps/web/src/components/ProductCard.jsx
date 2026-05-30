@@ -22,7 +22,8 @@ function ProductCard({ product }) {
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            draggable={false}
+            className="no-browser-image-action w-full h-full object-cover group-hover:scale-110 group-active:scale-110 transition-transform duration-500"
           />
         </div>
         <CardHeader>

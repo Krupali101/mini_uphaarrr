@@ -95,6 +95,14 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .no-browser-image-action {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+  }
 }
 
 @keyframes fadeIn {

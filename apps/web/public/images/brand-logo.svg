@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Mini Uphaarrr logo</title>
+  <desc id="desc">Round peach Mini Uphaarrr brand logo with bow and crafted by K text.</desc>
+  <defs>
+    <radialGradient id="paper" cx="50%" cy="45%" r="58%">
+      <stop offset="0%" stop-color="#fffaf6"/>
+      <stop offset="64%" stop-color="#fff7f0"/>
+      <stop offset="100%" stop-color="#ffe7dc"/>
+    </radialGradient>
+    <linearGradient id="peachRing" x1="18%" x2="82%" y1="12%" y2="88%">
+      <stop offset="0%" stop-color="#fff0e8"/>
+      <stop offset="48%" stop-color="#ffc7b0"/>
+      <stop offset="100%" stop-color="#fff2eb"/>
+    </linearGradient>
+    <filter id="softShadow" x="-12%" y="-12%" width="124%" height="124%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#6f260f" flood-opacity="0.14"/>
+    </filter>
+    <path id="bottomArc" d="M 304 736 A 270 270 0 0 0 720 736"/>
+  </defs>
+
+  <circle cx="512" cy="512" r="458" fill="#ffffff" filter="url(#softShadow)"/>
+  <circle cx="512" cy="512" r="434" fill="url(#peachRing)"/>
+  <circle cx="512" cy="512" r="374" fill="url(#paper)"/>
+  <circle cx="512" cy="512" r="349" fill="none" stroke="#6e210d" stroke-width="4"/>
+  <path d="M188 388c44-78 105-133 181-163" fill="none" stroke="#6e210d" stroke-width="4" stroke-linecap="round"/>
+  <path d="M836 388c-44-78-105-133-181-163" fill="none" stroke="#6e210d" stroke-width="4" stroke-linecap="round"/>
+
+  <g fill="none" stroke="#6e210d" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M503 170c-48-41-98-48-121-22-18 21-10 55 21 70 28 14 68 2 100-48z" fill="#fff3ed"/>
+    <path d="M521 170c48-41 98-48 121-22 18 21 10 55-21 70-28 14-68 2-100-48z" fill="#fff3ed"/>
+    <circle cx="512" cy="169" r="18" fill="#fff6ef"/>
+    <path d="M480 201l-42 91 31-19 14 46 41-110z" fill="#fff1ea"/>
+    <path d="M544 201l42 91-31-19-14 46-41-110z" fill="#fff1ea"/>
+  </g>
+
+  <text x="512" y="453" text-anchor="middle" fill="#7a2b15" font-family="'Playfair Display', 'Georgia', serif" font-size="138" font-style="italic" font-weight="500">Mini</text>
+  <text x="512" y="575" text-anchor="middle" fill="#7a2b15" font-family="'Playfair Display', 'Georgia', serif" font-size="88" font-weight="600" letter-spacing="4">UPHAARRR</text>
+
+  <g fill="none" stroke="#7a2b15" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M312 719c-33-17-55-40-70-71"/>
+    <path d="M286 706c-22-7-37-18-49-35 22 1 39 11 49 35z"/>
+    <path d="M326 728c-21-3-36-12-49-27 22-3 39 5 49 27z"/>
+    <path d="M253 674c-18-12-29-27-35-47 21 6 34 21 35 47z"/>
+    <path d="M712 719c33-17 55-40 70-71"/>
+    <path d="M738 706c22-7 37-18 49-35-22 1-39 11-49 35z"/>
+    <path d="M698 728c21-3 36-12 49-27-22-3-39 5-49 27z"/>
+    <path d="M771 674c18-12 29-27 35-47-21 6-34 21-35 47z"/>
+  </g>
+
+  <text fill="#7a2b15" font-family="'Playfair Display', 'Georgia', serif" font-size="40" font-weight="600" letter-spacing="2">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">crafted by K</textPath>
+  </text>
+</svg>

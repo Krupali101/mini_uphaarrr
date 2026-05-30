@@ -26,9 +26,17 @@ function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 md:gap-8">
           <div>
-            <span className="text-2xl md:text-3xl font-bold text-primary" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Mini_Uphaarrr
-            </span>
+            <Link to="/" className="inline-flex max-w-full items-center gap-3">
+              <img
+                src="/images/mini-uphaarrr-logo.png"
+                alt="Mini Uphaarrr"
+                draggable={false}
+                className="no-browser-image-action h-14 w-14 shrink-0 rounded-full"
+              />
+              <span className="truncate text-2xl font-bold text-primary md:text-3xl" style={{ fontFamily: 'Playfair Display, serif' }}>
+                Mini Uphaarrr
+              </span>
+            </Link>
             <p className="mt-3 md:mt-4 text-xs md:text-sm leading-relaxed max-w-prose">
               Handmade with love, customized just for you. Creating unique gifts and surprise creations designed with creativity, elegance, and love.
             </p>
