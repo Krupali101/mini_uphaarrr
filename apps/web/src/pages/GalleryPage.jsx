@@ -54,7 +54,11 @@ function GalleryItem({ image, index }) {
         fetchPriority={index < 6 ? 'high' : 'low'}
         draggable={false}
         onLoad={() => setIsLoaded(true)}
-        className={`no-browser-image-action absolute inset-0 h-full w-full object-cover transform-gpu transition-all duration-500 ease-out group-hover:scale-105 group-active:scale-105 ${
+        className={`no-browser-image-action absolute inset-0 h-full w-full object-cover
+        transition-all duration-700 ease-out
+        group-hover:scale-[1.12]
+        group-active:scale-[1.12]
+        ${
           isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.01]'
         }`}
         style={{
