@@ -23,7 +23,7 @@ export function getCategories(params = {}) {
 }
 
 export function getCategory(idOrSlug) {
-  return requestJson(`/api/categories/${encodeURIComponent(idOrSlug)}`);
+  return requestJson(`/api/categories?slug=${encodeURIComponent(idOrSlug)}`);
 }
 
 export function getProducts(params = {}) {

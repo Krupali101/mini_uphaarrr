@@ -32,6 +32,20 @@ async function categoriesCollectionHandler(req, res) {
     await connectDB();
 
     if (req.method === 'GET') {
+      const lookupValue = req.query?.slug || req.query?.id;
+      if (lookupValue) {
+        const lookupFilter = mongoose.Types.ObjectId.isValid(lookupValue)
+          ? { _id: lookupValue }
+          : { slug: lookupValue };
+        const category = await Category.findOne({ ...lookupFilter, active: { $ne: false } });
+        if (!category) {
+          sendJson(res, 404, { message: 'Category not found.' });
+          return;
+        }
+        const children = await Category.find({ parentId: category._id, active: { $ne: false } }).sort({ createdAt: 1 });
+        sendJson(res, 200, { category: serializeCategory(category), children: children.map(serializeCategory) });
+        return;
+      }
       const filter = req.query?.includeAll === 'true'
         ? {}
         : { active: { $ne: false }, $or: [{ parentId: null }, { parentId: { $exists: false } }] };
