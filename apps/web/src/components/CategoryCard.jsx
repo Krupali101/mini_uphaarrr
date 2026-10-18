@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ArrowUpRight } from 'lucide-react';
 
 function CategoryCard({ category, index }) {
   return (
@@ -10,27 +10,26 @@ function CategoryCard({ category, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="min-w-0"
     >
-      <Link to={`/products#${category.name.toLowerCase().replace(/\s+/g, '-')}`}>
-        <Card className="h-full overflow-hidden group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-          <div className="relative overflow-hidden aspect-[4/3]">
-            <img
-              src={category.image}
-              alt={category.name}
-              draggable={false}
-              className="no-browser-image-action w-full h-full object-cover group-hover:scale-110 group-active:scale-110 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </div>
-          <CardHeader>
-            <CardTitle className="text-2xl font-semibold" style={{ letterSpacing: '-0.01em' }}>
-              {category.name}
-            </CardTitle>
-            <CardDescription className="text-sm leading-relaxed">
-              {category.description}
-            </CardDescription>
-          </CardHeader>
-        </Card>
+      <Link
+        to={`/products/${category.slug}`}
+        className="group relative mx-auto flex min-h-[15rem] max-w-[14rem] flex-col items-center justify-center gap-3 overflow-hidden rounded-3xl border border-primary/10 bg-gradient-to-b from-card to-secondary/30 p-4 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-primary/30 hover:shadow-xl"
+      >
+        <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-background/80 text-primary opacity-0 shadow-sm transition-all duration-300 group-hover:opacity-100">
+          <ArrowUpRight className="h-4 w-4" />
+        </span>
+        <span className="block h-[7.25rem] w-[7.25rem] overflow-hidden rounded-full border-4 border-background bg-muted shadow-md ring-1 ring-primary/20 transition-all duration-500 group-hover:scale-105 group-hover:ring-4 group-hover:ring-primary/20 sm:h-32 sm:w-32 md:h-36 md:w-36">
+          <img
+            src={category.image}
+            alt={category.name}
+            draggable={false}
+            className="no-browser-image-action h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 group-active:scale-105"
+          />
+        </span>
+        <span className="max-w-[11rem] text-sm font-semibold leading-snug text-foreground sm:text-base">
+          {category.name}
+        </span>
       </Link>
     </motion.div>
   );

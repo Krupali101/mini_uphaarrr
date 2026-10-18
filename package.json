@@ -5,6 +5,7 @@
 	"scripts": {
 		"dev": "concurrently --kill-others --raw \"node scripts/dev-api.js\" \"npm run dev --prefix apps/web\"",
 		"build": "npm run build --prefix apps/web",
+		"seed:catalog": "node scripts/seed-catalog.mjs",
 		"start": "concurrently --kill-others --raw",
 		"lint": "concurrently --raw \"npm run lint --prefix apps/web\""
 	},
@@ -15,6 +16,8 @@
 		"apps/*"
 	],
 	"dependencies": {
+		"dotenv": "^18.0.1",
+		"mongoose": "^9.10.1",
 		"nodemailer": "^8.0.8"
 	}
 }

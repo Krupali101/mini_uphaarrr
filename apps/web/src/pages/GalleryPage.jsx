@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
+import { getGalleryItems } from '@/lib/api';
 
 const galleryImageAspects = {
   '0.png': '1086 / 1448',
@@ -32,13 +33,60 @@ const galleryImageAspects = {
   'ChatGPT Image May 28, 2026, 08_41_55 PM.png': '1086 / 1448'
 };
 
-function GalleryItem({ image, index }) {
+const fallbackGalleryImages = [
+  '0.png',
+  '00.jpg',
+  '6.webp',
+  '7.webp',
+  '08.png',
+  '8.webp',
+  '19.jpg',
+  '10.webp',
+  '11.webp',
+  '12.png',
+  '12.webp',
+  '13.png',
+  '13.webp',
+  '14.png',
+  '14.webp',
+  '15.webp',
+  '16.jpg',
+  '17.jpg',
+  '18.jpg',
+  'ca5bc64532d31bdc1d5007f5720c9d2b.jpg',
+  'h_00.jpg',
+  'h_2.jpg',
+  'h_18.jpg',
+  'h_13.jpg',
+  'h_14.jpg',
+  'h_15.jpg',
+  'h_17.jpg',
+  'h_7.jpg',
+  'h_6.jpg',
+  'a7636a82a8c8e8104eaf12cec641db9e.jpg',
+  '61d3e071-65a1-4b77-840b-453dac9095ca.png',
+  '48142d3906dec6222c42722e75e4d375.jpg',
+  '0a7422d7-10ca-49dd-b16d-e291cd8a8446.png',
+  'ChatGPT Image May 28, 2026, 08_41_55 PM.png'
+];
+
+function getGalleryImageSrc(image) {
+  return image.startsWith('http') || image.startsWith('/') ? image : `/images/gallery/${image}`;
+}
+
+function getGalleryImageAspect(image) {
+  const fileName = image.split('/').pop();
+
+  return galleryImageAspects[fileName] || '4 / 5';
+}
+
+function GalleryItem({ image, title, index }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <div
       className="group relative mb-3 break-inside-avoid overflow-hidden rounded-lg bg-muted shadow-sm transform-gpu select-none sm:mb-4"
-      style={{ aspectRatio: galleryImageAspects[image] || '4 / 5' }}
+      style={{ aspectRatio: getGalleryImageAspect(image) }}
       onContextMenu={(event) => event.preventDefault()}
     >
       <div
@@ -47,8 +95,8 @@ function GalleryItem({ image, index }) {
         }`}
       />
       <img
-        src={`/images/gallery/${image}`}
-        alt={`Mini Uphaarrr handmade creation ${index + 1}`}
+        src={getGalleryImageSrc(image)}
+        alt={title || `Mini Uphaarrr handmade creation ${index + 1}`}
         loading="lazy"
         decoding="async"
         fetchPriority={index < 6 ? 'high' : 'low'}
@@ -70,42 +118,19 @@ function GalleryItem({ image, index }) {
 }
 
 function GalleryPage() {
-  const galleryImages = [
-    '0.png',
-    '00.jpg',
-    '6.webp',
-    '7.webp',
-    '08.png',
-    '8.webp',
-    '19.jpg',
-    '10.webp',
-    '11.webp',
-    '12.png',
-    '12.webp',
-    '13.png',
-    '13.webp',
-    '14.png',
-    '14.webp',
-    '15.webp',
-    '16.jpg',
-    '17.jpg',
-    '18.jpg',
-    'ca5bc64532d31bdc1d5007f5720c9d2b.jpg',
-    'h_00.jpg',
-    'h_2.jpg',
-    'h_18.jpg',
-    'h_13.jpg',
-    'h_14.jpg',
-    'h_15.jpg',
-    'h_17.jpg',
-    'h_7.jpg',
-    'h_6.jpg',
-    'a7636a82a8c8e8104eaf12cec641db9e.jpg',
-    '61d3e071-65a1-4b77-840b-453dac9095ca.png',
-    '48142d3906dec6222c42722e75e4d375.jpg',
-    '0a7422d7-10ca-49dd-b16d-e291cd8a8446.png',
-    'ChatGPT Image May 28, 2026, 08_41_55 PM.png'
-  ];
+  const [galleryItems, setGalleryItems] = useState(() => (
+    fallbackGalleryImages.map((image) => ({ id: image, image, title: '' }))
+  ));
+
+  useEffect(() => {
+    getGalleryItems()
+      .then((result) => {
+        setGalleryItems(result.galleryItems || []);
+      })
+      .catch(() => {
+        setGalleryItems(fallbackGalleryImages.map((image) => ({ id: image, image, title: '' })));
+      });
+  }, []);
 
   return (
     <>
@@ -134,9 +159,9 @@ function GalleryPage() {
                 </p>
               </motion.div>
 
-              <div className="columns-2 gap-3 space-y-3 sm:gap-4 sm:space-y-4 lg:columns-3 xl:columns-4">
-                {galleryImages.map((image, index) => (
-                  <GalleryItem key={image} image={image} index={index} />
+              <div className="columns-2 gap-3 space-y-3 sm:columns-3 sm:gap-4 sm:space-y-4 lg:columns-4 xl:columns-5 2xl:columns-6">
+                {galleryItems.map((item, index) => (
+                  <GalleryItem key={item.id || item.image} image={item.image} title={item.title} index={index} />
                 ))}
               </div>
             </div>
