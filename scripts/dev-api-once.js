@@ -40,8 +40,8 @@ const { bannerItemHandler, bannersCollectionHandler } = require('../api/_lib/ban
 const { galleryCollectionHandler, galleryItemHandler } = require('../api/_lib/galleryHandler');
 const { announcementsCollectionHandler, announcementItemHandler } = require('../api/_lib/announcementsHandler');
 const { collection: testimonialsCollectionHandler, item: testimonialItemHandler } = require('../api/_lib/testimonialsHandler');
-const uploadImagesHandler = require('../api/upload-images');
-const sendEmail = require('../api/send-email');
+const uploadImagesHandler = require('../api/_lib/cloudinaryHandler');
+const sendEmail = require('../api-legacy/send-email');
 
 const readBody = (req) => new Promise((resolve, reject) => {
   let body = '';

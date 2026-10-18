@@ -9,7 +9,11 @@ const sendEmailHandler = require('../api-legacy/send-email');
 
 function getPath(req) {
   const value = req.query?.path;
-  const parts = Array.isArray(value) ? value : String(value || '').split('/');
+  let rawPath = value;
+  if (!rawPath && req.url) {
+    rawPath = req.url.split('?')[0].replace(/^\/api\/?/, '');
+  }
+  const parts = Array.isArray(rawPath) ? rawPath : String(rawPath || '').split('/');
   return parts.filter(Boolean);
 }
 
