@@ -17,13 +17,14 @@ function PriceLabel({ product }) {
 
   return <><span>{match[1].trim()}</span>{match[2] ? <span className="ml-1 text-sm font-normal text-muted-foreground">{match[2]}</span> : null}</>;
 }
-import { getProduct } from '@/lib/api';
+import { getProduct, getProducts } from '@/lib/api';
 import { getInstagramDMLink } from '@/utils/contactUtils';
 
 function ProductDetailsPage() {
   const { categorySlug, productSlug } = useParams();
   const [product, setProduct] = useState(null);
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
@@ -32,12 +33,25 @@ function ProductDetailsPage() {
       .then((result) => {
         if (isMounted) {
           setProduct(result.product);
+          setIsLoading(false);
         }
       })
       .catch((apiError) => {
-        if (isMounted) {
-          setError(apiError.message || 'Unable to load product.');
-        }
+        // Fall back to the catalog response for older/stale product links.
+        getProducts({ available: true })
+          .then((result) => {
+            const match = (result.products || []).find((item) => item.slug === productSlug);
+            if (!isMounted) return;
+            if (match) setProduct(match);
+            else setError(apiError.message || 'Unable to load product.');
+            setIsLoading(false);
+          })
+          .catch(() => {
+            if (isMounted) {
+              setError(apiError.message || 'Unable to load product.');
+              setIsLoading(false);
+            }
+          });
       });
 
     return () => {
@@ -69,10 +83,24 @@ function ProductDetailsPage() {
                 <p className="text-sm text-muted-foreground">{error}</p>
               ) : null}
 
-              {product ? (
+              {isLoading ? (
+                <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start" aria-label="Loading product">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {Array.from({ length: 2 }).map((_, index) => <div key={index} className="aspect-square rounded-lg animate-shimmer" />)}
+                  </div>
+                  <div className="space-y-5 lg:pt-4">
+                    <div className="h-4 w-28 rounded-full animate-shimmer" />
+                    <div className="h-12 w-4/5 rounded-xl animate-shimmer" />
+                    <div className="h-6 w-32 rounded-full animate-shimmer" />
+                    <div className="h-5 w-full rounded-full animate-shimmer" />
+                    <div className="h-5 w-5/6 rounded-full animate-shimmer" />
+                    <div className="h-12 w-48 rounded-xl animate-shimmer" />
+                  </div>
+                </div>
+              ) : product ? (
                 <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
                   <div className="grid gap-4 sm:grid-cols-2">
-                    {product.images.map((image) => (
+                    {(product.images || [product.image]).filter(Boolean).map((image) => (
                       <div key={image} className="overflow-hidden rounded-lg bg-muted shadow-sm">
                         <img
                           src={image}

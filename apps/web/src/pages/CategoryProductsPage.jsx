@@ -17,6 +17,7 @@ function CategoryProductsPage() {
   const [products, setProducts] = useState([]);
   const [children, setChildren] = useState([]);
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
@@ -33,10 +34,12 @@ function CategoryProductsPage() {
         setCategory(categoryResult.category);
         setChildren(categoryResult.children || []);
         setProducts(categoryResult.children?.length ? [] : sortProductsByPosition(productResult.products || []));
+        setIsLoading(false);
       })
       .catch((apiError) => {
         if (isMounted) {
           setError(apiError.message || 'Unable to load products.');
+          setIsLoading(false);
         }
       });
 
@@ -79,7 +82,11 @@ function CategoryProductsPage() {
                 </p>
               </motion.div>
 
-              {children.length > 0 ? (
+              {isLoading ? (
+                <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
+                  {Array.from({ length: 5 }).map((_, index) => <div key={index} className="h-60 rounded-3xl animate-shimmer" />)}
+                </div>
+              ) : children.length > 0 ? (
                 <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
                   {children.map((child, index) => <CategoryCard key={child.id} category={child} index={index} />)}
                 </div>
@@ -90,6 +97,7 @@ function CategoryProductsPage() {
               ) : null}
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {isLoading ? Array.from({ length: 4 }).map((_, index) => <div key={`product-skeleton-${index}`} className="h-80 rounded-xl animate-shimmer" />) : null}
                 {products.map((product, index) => (
                   <ProductCard key={product.id} product={product} index={index} />
                 ))}
