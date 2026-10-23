@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 
 function CategoryCard({ category, index }) {
+  const [isLoaded, setIsLoaded] = React.useState(false);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -24,7 +25,8 @@ function CategoryCard({ category, index }) {
             src={category.image}
             alt={category.name}
             draggable={false}
-            className="no-browser-image-action h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 group-active:scale-105"
+            onLoad={() => setIsLoaded(true)}
+            className={`no-browser-image-action h-full w-full object-cover transition-all duration-500 group-hover:scale-105 group-active:scale-105 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
           />
         </span>
         <span className="max-w-[11rem] text-sm font-semibold leading-snug text-foreground sm:text-base">

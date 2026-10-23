@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Circle, Crown, Gem, Gift, Heart, Instagram, Palette, Share2, ShoppingBag, Smile, Sparkles, User, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header.jsx';
-import AnnouncementBar from '@/components/AnnouncementBar.jsx';
 import Footer from '@/components/Footer.jsx';
 import CategoryCard from '@/components/CategoryCard.jsx';
 import ReviewCard from '@/components/ReviewCard.jsx';
@@ -59,6 +58,7 @@ function HomePage() {
   const [quizStep, setQuizStep] = useState(0);
   const [quizAnswers, setQuizAnswers] = useState({});
   const [catalogError, setCatalogError] = useState('');
+  const [isCatalogLoading, setIsCatalogLoading] = useState(true);
   const [customerTestimonials, setCustomerTestimonials] = useState(testimonials);
   const [testimonialOffset, setTestimonialOffset] = useState(0);
 
@@ -94,10 +94,12 @@ function HomePage() {
         setFeaturedProducts(sortProductsByPosition(productResult.products || []));
         setBanners(bannerResult.banners || []);
         if (testimonialResult.testimonials?.length) setCustomerTestimonials(testimonialResult.testimonials);
+        setIsCatalogLoading(false);
       })
       .catch((error) => {
         if (isMounted) {
           setCatalogError(error.message || 'Unable to load catalog.');
+          setIsCatalogLoading(false);
         }
       });
 
@@ -224,11 +226,10 @@ function HomePage() {
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
-        <AnnouncementBar />
         <Header />
 
         <main className="flex flex-1 flex-col">
-          <section className={`hero-banner-shell relative overflow-hidden ${activeBanner ? 'min-h-[180px] bg-background sm:min-h-[260px] md:min-h-[340px] lg:min-h-[420px]' : 'bg-gradient-to-br from-primary/10 via-background to-secondary/10'}`}>
+          <section className={`hero-banner-shell relative overflow-hidden ${activeBanner || isCatalogLoading ? 'min-h-[180px] bg-background sm:min-h-[260px] md:min-h-[340px] lg:min-h-[420px]' : 'bg-gradient-to-br from-primary/10 via-background to-secondary/10'}`}>
             {activeBanner ? (
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
@@ -270,8 +271,14 @@ function HomePage() {
                 </motion.div>
               </AnimatePresence>
             ) : null}
-            <div className={`container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 ${activeBanner ? 'flex min-h-[180px] items-end justify-center pb-4 sm:min-h-[260px] md:min-h-[340px] lg:min-h-[420px]' : 'py-[2.3rem] md:py-12 lg:py-14'}`}>
-              {!activeBanner ? (
+            <div className={`container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 ${activeBanner || isCatalogLoading ? 'flex min-h-[180px] items-end justify-center pb-4 sm:min-h-[260px] md:min-h-[340px] lg:min-h-[420px]' : 'py-[2.3rem] md:py-12 lg:py-14'}`}>
+              {isCatalogLoading ? (
+                <div className="w-full max-w-4xl space-y-5 pb-5">
+                  <div className="h-12 w-3/4 rounded-xl animate-shimmer md:h-16" />
+                  <div className="h-5 w-2/3 rounded-full animate-shimmer" />
+                  <div className="h-5 w-1/2 rounded-full animate-shimmer" />
+                </div>
+              ) : !activeBanner ? (
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -340,8 +347,13 @@ function HomePage() {
               ) : null}
 
               <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-6">
-                {categories.map((category, index) => (
+                {categories.length ? categories.map((category, index) => (
                   <CategoryCard key={category.id} category={category} index={index} />
+                )) : Array.from({ length: 5 }).map((_, index) => (
+                  <div key={`category-skeleton-${index}`} className="mx-auto flex min-h-[15rem] w-full max-w-[14rem] flex-col items-center justify-center gap-3 rounded-3xl border border-secondary/60 bg-card p-4 shadow-sm">
+                    <span className="h-28 w-28 rounded-full animate-shimmer sm:h-32 sm:w-32" />
+                    <span className="h-4 w-28 rounded-full animate-shimmer" />
+                  </div>
                 ))}
               </div>
             </div>
@@ -411,7 +423,7 @@ function HomePage() {
             </div>
           </section>
 
-          <section className="order-4 border-y border-primary/10 bg-[#eee7ee] pt-8 pb-10 md:pt-10 md:pb-14">
+          <section className="order-4 border-y border-primary/10 bg-accent/50 pt-8 pb-10 md:pt-10 md:pb-14">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -492,7 +504,7 @@ function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="gift-quiz-banner overflow-hidden rounded-[2rem] bg-[linear-gradient(115deg,#e9a0b7_0%,#c96f92_48%,#8e456b_100%)] px-6 py-8 text-white shadow-xl md:px-10 md:py-11"
+                className="gift-quiz-banner overflow-hidden rounded-[2rem] bg-[linear-gradient(115deg,#F5CBCB_0%,#C5B3D3_100%)] px-6 py-8 text-foreground shadow-xl md:px-10 md:py-11"
               >
                 <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
                   <div>
@@ -501,7 +513,7 @@ function HomePage() {
                         <Gift className="h-7 w-7" />
                       </span>
                       <span className="text-xs font-bold uppercase tracking-[0.35em] text-white/85">Gift Finder</span>
-                      <span className="rounded-full bg-white/70 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[#8a405c]">
+                      <span className="rounded-full bg-white/70 px-3 py-1 text-xs font-bold uppercase tracking-wide text-foreground">
                         Popular
                       </span>
                     </div>
@@ -517,7 +529,7 @@ function HomePage() {
                       type="button"
                       size="lg"
                       onClick={openQuiz}
-                      className="rounded-2xl bg-[#d87998] px-8 py-6 text-base font-bold text-white hover:bg-[#c96889]"
+                      className="rounded-2xl bg-primary px-8 py-6 text-base font-bold text-white hover:bg-primary/85"
                     >
                       Start Gift Quiz
                       <ArrowRight className="ml-3 h-5 w-5" />
@@ -532,11 +544,11 @@ function HomePage() {
           </section>
 
           {isQuizOpen ? (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#7a4055]/20 px-4 py-6 backdrop-blur-sm">
-              <div className="relative max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-[2rem] border border-[#f3c7d3] bg-[#fffafb] p-5 shadow-2xl sm:p-8 md:p-12">
-                <div className="absolute left-0 right-0 top-0 h-1.5 bg-[#fbe1e8]">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/20 px-4 py-6 backdrop-blur-sm">
+              <div className="relative max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-[2rem] border border-secondary bg-card p-5 shadow-2xl sm:p-8 md:p-12">
+                <div className="absolute left-0 right-0 top-0 h-1.5 bg-accent">
                   <div
-                    className="h-full bg-[#d87998] transition-all duration-300"
+                    className="h-full bg-primary transition-all duration-300"
                     style={{ width: `${Math.min((quizStep / quizSteps.length) * 100, 100)}%` }}
                   />
                 </div>

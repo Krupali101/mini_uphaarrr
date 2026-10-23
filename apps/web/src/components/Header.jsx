@@ -20,7 +20,7 @@ function Header() {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-secondary bg-card/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-card/90">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-[4rem] items-center justify-between">
           <Link to="/" className="flex min-w-0 items-center gap-2.5">
@@ -30,7 +30,7 @@ function Header() {
               draggable={false}
               className="no-browser-image-action h-9 w-9 shrink-0 rounded-full sm:h-12 sm:w-12"
             />
-            <span className="truncate text-2xl font-bold text-primary sm:text-2.5xl" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <span className="truncate text-2xl font-bold text-black sm:text-2.5xl" style={{ fontFamily: 'Playfair Display, serif' }}>
               Mini Uphaarrr
             </span>
           </Link>
@@ -40,10 +40,10 @@ function Header() {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-all duration-200 hover:text-primary ${
+                  className={`relative text-sm font-medium transition-all duration-200 hover:text-foreground ${
                   isActive(link.path)
-                    ? 'text-primary font-semibold'
-                    : 'text-foreground/80'
+                      ? 'font-semibold text-foreground after:absolute after:-bottom-2 after:left-0 after:right-0 after:h-0.5 after:rounded-full after:bg-primary'
+                      : 'text-foreground/70'
                 }`}
               >
                 {link.name}
@@ -53,7 +53,7 @@ function Header() {
               href="https://www.instagram.com/mini_.uphaarrr"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground/80 hover:text-primary transition-colors duration-200"
+              className="text-foreground/70 hover:text-foreground transition-colors duration-200"
             >
               <Instagram className="w-5 h-5" />
             </a>
@@ -72,10 +72,10 @@ function Header() {
                     key={link.path}
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className={`text-lg font-medium transition-all duration-200 hover:text-primary ${
+                    className={`text-lg font-medium transition-all duration-200 hover:text-foreground ${
                       isActive(link.path)
-                        ? 'text-primary font-semibold'
-                        : 'text-foreground/80'
+                        ? 'text-foreground font-semibold'
+                        : 'text-foreground/70'
                     }`}
                   >
                     {link.name}
@@ -85,7 +85,7 @@ function Header() {
                   href="https://www.instagram.com/mini_.uphaarrr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-lg font-medium text-foreground/80 hover:text-primary transition-colors duration-200"
+                  className="flex items-center gap-2 text-lg font-medium text-foreground/70 hover:text-foreground transition-colors duration-200"
                 >
                   <Instagram className="w-5 h-5" />
                   Follow on Instagram

@@ -85,12 +85,12 @@ function GalleryItem({ image, title, index }) {
 
   return (
     <div
-      className="group relative mb-3 break-inside-avoid overflow-hidden rounded-lg bg-muted shadow-sm transform-gpu select-none sm:mb-4"
+      className="group relative overflow-hidden rounded-lg bg-muted shadow-sm transform-gpu select-none"
       style={{ aspectRatio: getGalleryImageAspect(image) }}
       onContextMenu={(event) => event.preventDefault()}
     >
       <div
-        className={`absolute inset-0 bg-muted transition-opacity duration-700 ease-out ${
+        className={`absolute inset-0 animate-shimmer transition-opacity duration-700 ease-out ${
           isLoaded ? 'opacity-0' : 'opacity-100'
         }`}
       />
@@ -159,7 +159,7 @@ function GalleryPage() {
                 </p>
               </motion.div>
 
-              <div className="columns-2 gap-3 space-y-3 sm:columns-3 sm:gap-4 sm:space-y-4 lg:columns-4 xl:columns-5 2xl:columns-6">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
                 {galleryItems.map((item, index) => (
                   <GalleryItem key={item.id || item.image} image={item.image} title={item.title} index={index} />
                 ))}

@@ -24,6 +24,7 @@ function PriceLabel({ product }) {
 }
 
 function ProductCard({ product }) {
+  const [isLoaded, setIsLoaded] = React.useState(false);
   const productPath = product?.category?.slug && product?.slug
     ? `/products/${product.category.slug}/${product.slug}`
     : '/products';
@@ -41,11 +42,13 @@ function ProductCard({ product }) {
     >
       <Card className="h-full flex flex-col overflow-hidden group hover:shadow-xl transition-all duration-300">
         <Link to={productPath} className="relative block overflow-hidden aspect-[4/3]">
+          {!isLoaded ? <span className="absolute inset-0 animate-shimmer" aria-hidden="true" /> : null}
           <img
             src={product.image || product.images?.[0]}
             alt={product.name}
             draggable={false}
-            className="no-browser-image-action w-full h-full object-cover group-hover:scale-110 group-active:scale-110 transition-transform duration-500"
+            onLoad={() => setIsLoaded(true)}
+            className={`no-browser-image-action w-full h-full object-cover group-hover:scale-110 group-active:scale-110 transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
           />
         </Link>
         <CardHeader className="p-4">

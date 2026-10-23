@@ -22,7 +22,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="border-t border-primary/15 bg-[#f7d3df] text-secondary-foreground">
+    <footer className="border-t border-primary/25 bg-secondary text-secondary-foreground">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 md:gap-8">
           <div>
@@ -33,7 +33,7 @@ function Footer() {
                 draggable={false}
                 className="no-browser-image-action h-14 w-14 shrink-0 rounded-full"
               />
-              <span className="truncate text-2xl font-bold text-primary md:text-3xl" style={{ fontFamily: 'Playfair Display, serif' }}>
+              <span className="truncate text-2xl font-bold text-black md:text-3xl" style={{ fontFamily: 'Playfair Display, serif' }}>
                 Mini Uphaarrr
               </span>
             </Link>

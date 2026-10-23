@@ -11,11 +11,13 @@ import GalleryPage from './pages/GalleryPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import AdminPage from './pages/AdminPage.jsx';
+import AnnouncementBar from './components/AnnouncementBar.jsx';
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
+      <AnnouncementBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
