@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const toEmail = process.env.TO_EMAIL || 'officialminiuphaarrr@gmail.com';
+const toEmail = process.env.TO_EMAIL || 'supportminiuphaarrr@gmail.com';
 
 const sendJson = (res, statusCode, body) => {
   res.statusCode = statusCode;

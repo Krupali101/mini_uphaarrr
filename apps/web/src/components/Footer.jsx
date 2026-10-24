@@ -81,7 +81,7 @@ function Footer() {
               >
                 <Button variant="outline" className="w-full justify-start min-w-0 h-10 text-sm transition-all duration-200 active:scale-[0.98]">
                   <Mail className="w-4 h-4 mr-2 shrink-0" />
-                  <span className="truncate">officialminiuphaarrr@gmail.com</span>
+                  <span className="truncate">supportminiuphaarrr@gmail.com</span>
                 </Button>
               </a>
             </div>

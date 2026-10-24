@@ -55,7 +55,7 @@ function ContactPage() {
     {
       icon: Mail,
       title: 'Email',
-      value: 'officialminiuphaarrr@gmail.com',
+      value: 'supportminiuphaarrr@gmail.com',
       link: getGmailLink('Mini_Uphaarrr Inquiry', 'Hi Mini_Uphaarrr,\n\nI would like to get in touch with you.\n\nThank you!'),
       description: 'Send us your inquiries anytime',
       feedback: {
