@@ -41,7 +41,7 @@ function ProductCard({ product }) {
       transition={{ duration: 0.5 }}
     >
       <Card className="h-full flex flex-col overflow-hidden group hover:shadow-xl transition-all duration-300">
-        <Link to={productPath} className="relative block overflow-hidden aspect-[4/3]">
+        <Link to={productPath} className="relative block overflow-hidden aspect-[4/3] bg-muted">
           {!isLoaded ? <span className="absolute inset-0 animate-shimmer" aria-hidden="true" /> : null}
           <img
             src={product.image || product.images?.[0]}
@@ -53,7 +53,7 @@ function ProductCard({ product }) {
         </Link>
         <CardHeader className="p-4">
           <Link to={productPath}>
-            <CardTitle className="text-lg font-semibold transition-colors hover:text-primary" style={{ letterSpacing: '-0.01em' }}>
+            <CardTitle className="truncate text-lg font-semibold transition-colors hover:text-primary" style={{ letterSpacing: '-0.01em' }} title={product.name}>
               {product.name}
             </CardTitle>
           </Link>
@@ -71,7 +71,7 @@ function ProductCard({ product }) {
             <p className="pt-1 text-base font-bold text-foreground"><PriceLabel product={product} /></p>
           )}
         </CardHeader>
-        <CardFooter className="mt-auto p-4 pt-0">
+        <CardFooter className="p-4 pt-0">
           <Button
             onClick={handleOrderNow}
             className="h-10 w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 active:scale-[0.98]"

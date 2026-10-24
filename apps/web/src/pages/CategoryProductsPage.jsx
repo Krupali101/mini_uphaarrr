@@ -82,11 +82,7 @@ function CategoryProductsPage() {
                 </p>
               </motion.div>
 
-              {isLoading ? (
-                <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-                  {Array.from({ length: 5 }).map((_, index) => <div key={index} className="h-60 rounded-3xl animate-shimmer" />)}
-                </div>
-              ) : children.length > 0 ? (
+              {!isLoading && children.length > 0 ? (
                 <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
                   {children.map((child, index) => <CategoryCard key={child.id} category={child} index={index} />)}
                 </div>
@@ -97,7 +93,16 @@ function CategoryProductsPage() {
               ) : null}
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {isLoading ? Array.from({ length: 4 }).map((_, index) => <div key={`product-skeleton-${index}`} className="h-80 rounded-xl animate-shimmer" />) : null}
+                {isLoading ? Array.from({ length: 4 }).map((_, index) => (
+                  <div key={`product-skeleton-${index}`} className="overflow-hidden rounded-xl border border-primary/10 bg-card">
+                    <div className="aspect-[4/3] animate-shimmer" />
+                    <div className="space-y-3 p-4">
+                      <div className="h-5 w-4/5 rounded animate-shimmer" />
+                      <div className="h-5 w-2/5 rounded animate-shimmer" />
+                      <div className="h-10 w-full rounded-lg animate-shimmer" />
+                    </div>
+                  </div>
+                )) : null}
                 {products.map((product, index) => (
                   <ProductCard key={product.id} product={product} index={index} />
                 ))}
