@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { formatPrice } from '@/lib/catalog';
 import { getInstagramDMLink } from '@/utils/contactUtils';
 
@@ -57,17 +57,6 @@ function ProductCard({ product }) {
               {product.name}
             </CardTitle>
           </Link>
-          <CardDescription
-            className="text-sm leading-relaxed"
-            style={{
-              display: '-webkit-box',
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: 'vertical',
-              overflow: 'hidden',
-            }}
-          >
-            {product.description}
-          </CardDescription>
           {Number(product.originalPrice) > Number(product.price) ? (
             <div className="pt-1">
               <div className="flex items-center gap-2">

@@ -62,13 +62,36 @@ function fileToDataUrl(file) {
 }
 
 async function createImageItems(files) {
-  const imageFiles = Array.from(files).filter((file) => file.type.startsWith('image/') || /\.(jpg|jpeg|png|webp|gif|avif)$/i.test(file.name));
-  const items = await Promise.all(imageFiles.map(async (file) => ({
-    id: `${file.name}-${file.lastModified}-${typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Math.random().toString(36).slice(2)}`,
-    name: file.name,
-    preview: URL.createObjectURL(file),
-    dataUrl: await fileToDataUrl(file),
-  })));
+  // Do not rely only on the browser-reported MIME type: Windows often reports
+  // an empty type for HEIC files selected from Explorer.
+  const imageFiles = Array.from(files);
+  const items = await Promise.all(imageFiles.map(async (file) => {
+    const isHeic = /\.(heic|heif)$/i.test(file.name) || /image\/hei[cf]/i.test(file.type);
+    let previewFile = file;
+
+    if (isHeic) {
+      // Keep the HEIC decoder out of the initial Admin bundle; it is only
+      // needed when an HEIC/HEIF file is actually selected.
+      const heicModule = await import('heic2any');
+      const heic2any = heicModule.default?.default || heicModule.default || heicModule;
+      const converted = await heic2any({
+        blob: file,
+        toType: 'image/jpeg',
+        quality: 0.9,
+      });
+      previewFile = Array.isArray(converted) ? converted[0] : converted;
+    }
+
+    const dataUrl = await fileToDataUrl(previewFile);
+    return {
+      id: `${file.name}-${file.lastModified}-${typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Math.random().toString(36).slice(2)}`,
+      name: isHeic ? file.name.replace(/\.(heic|heif)$/i, '.jpg') : file.name,
+      // Use the data URL for the preview too; this works reliably after the
+      // hidden file input is reset and on deployed browsers.
+      preview: dataUrl,
+      dataUrl,
+    };
+  }));
 
   return items;
 }
@@ -192,6 +215,8 @@ function AnnouncementListRow({ announcement, onEdit, onDelete }) {
 
 function ImagePicker({ label, multiple = true, images, onAdd, onRemove }) {
   const inputRef = useRef(null);
+  const inputId = `image-picker-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+  const [pickerError, setPickerError] = useState('');
 
   return (
     <div>
@@ -205,20 +230,28 @@ function ImagePicker({ label, multiple = true, images, onAdd, onRemove }) {
       <input
         ref={inputRef}
         type="file"
-        accept="image/*"
+        id={inputId}
+        accept="image/png,image/jpeg,image/webp,image/gif,image/avif,image/heic,image/heif,.heic,.heif"
         multiple={multiple}
         className="hidden"
         onChange={async (event) => {
           try {
+            setPickerError('');
             const selected = await createImageItems(event.target.files || []);
-            onAdd(selected);
+            if (!selected.length) {
+              setPickerError('This file could not be read as an image. Please choose JPG, PNG, WEBP, or HEIC.');
+            } else {
+              onAdd(selected);
+            }
           } catch (error) {
             console.error('Unable to select image:', error);
+            setPickerError(error?.message || 'Unable to read this image. Please try converting it to JPG first.');
           } finally {
             event.target.value = '';
           }
         }}
       />
+      {pickerError ? <p className="mb-2 text-sm text-destructive">{pickerError}</p> : null}
       {images.length > 0 ? (
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
           {images.map((image) => (
